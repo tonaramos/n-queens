@@ -85,8 +85,7 @@
           count++;
         }
       }  
-      return count > 1 ? true : false;
-      
+      return count > 1 ? true : false;  
     },
 
     // test if any rows on this board contain conflicts
@@ -126,7 +125,6 @@
         }
       }
       return false;
-      // return this.hasColConflictAt(this.ro);
     },
 
 
@@ -149,7 +147,7 @@
           }
         }
       }
-        return false;
+      return false;
     },
     hasAnyMajorDiagonalConflicts: function() { 
       for (var i = 0; i < this.get('n'); i++) {
@@ -192,7 +190,7 @@
           return true;
         }
       }
-    return false; // fixme
+      return false; // fixme
     },
 
     /*--------------------  End of Helper Functions  ---------------------*/

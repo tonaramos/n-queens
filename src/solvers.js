@@ -28,7 +28,7 @@ window.findNRooksSolution = function(k) {
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(x) {
   
-  let board = new Board({n:x})
+  let board = new Board({n: x});
   let solutionStorage = [];
   var solutionCount = solutionStorage.length; //fixme
   //given n iterate ofer every possible solution starting for each placement of 
@@ -42,16 +42,16 @@ window.countNRooksSolutions = function(x) {
   //   test the solution if valid add to storage, 
   //.  if invalid dont do anything
   //. add ruled out row and column to rule out arrays
-  let checkBoardFunction  = function (coor1, coor2, board) {
+  let checkBoardFunction = function (coor1, coor2, board) {
     let outPut;
     let ruleOutRow = [];
     let ruleOutColum = [];
     for (let i = 0; i < board.rows().length; i++) {
-      for (let k = 0; k < board.rows().length; k++){
+      for (let k = 0; k < board.rows().length; k++) {
            
-        if (i !== coor1 && k !== coor2){
-        board.togglePiece(i,k);
-          if (board.hasAnyRowConflicts() && board.hasRowConflictAt()){
+        if (i !== coor1 && k !== coor2) {
+          board.togglePiece(i, k);
+          if (board.hasAnyRowConflicts() && board.hasRowConflictAt()) {
             solutionStorage.push(board);
           }
         }
@@ -59,26 +59,14 @@ window.countNRooksSolutions = function(x) {
     } 
   };
 
-  for (let coor1 = 0; coor1<x; coor1++){
-    for (let coor2 = 0; coor2<x; coor2++){
-      checkBoardFunction(coor1, coor2, board)
+  for (let coor1 = 0; coor1 < x; coor1++) {
+    for (let coor2 = 0; coor2 < x; coor2++) {
+      checkBoardFunction(coor1, coor2, board);
     }
   }
   console.log('Number of solutions for ' + x + ' rooks:', solutionCount);
   return solutionCount;
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
@@ -87,28 +75,25 @@ window.findNQueensSolution = function(k) {
   var numB = 0;
   var queenBoard = new Board({n: k}); 
   var num = queenBoard.rows().length - 1;  
-  if (k === 0){
+  if (k === 0) {
     return [];
   }
   if (k === 1) {
     return [[1]];
   } 
   for ( var i = 1; i <= k; i++) {
-      if(i % 2 === 1 && i !== k){
-        queenBoard.togglePiece(numB, i);
-        numB++;
-      }
-      if(i % 2 === 0 && i !== k){
-        queenBoard.togglePiece(num, i);
-        num--;
-      }
-      // if (){
-       else if (i === k) {
-        queenBoard.togglePiece(numB, 0);
-      } 
+    if (i % 2 === 1 && i !== k) {
+      queenBoard.togglePiece(numB, i);
+      numB++;
     }
+    if (i % 2 === 0 && i !== k) {
+      queenBoard.togglePiece(num, i);
+      num--;
+    } else if (i === k) {
+      queenBoard.togglePiece(numB, 0);
+    } 
+  }
   var solution = queenBoard.rows();
-console.log('this sol: ',queenBoard.rows());
 
   console.log('Single solution for ' + k + ' queens:', JSON.stringify(solution));
   return solution;
