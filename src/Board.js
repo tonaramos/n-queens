@@ -120,12 +120,13 @@
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      for (let i = 0; i < this.get(0).length; i++) {
+      for (let i = 0; i < this.rows().length; i++) {
         if (this.hasColConflictAt(i)) {
           return true;
         }
       }
       return false;
+      // return this.hasColConflictAt(this.ro);
     },
 
 
@@ -148,7 +149,7 @@
           }
         }
       }
-      return false;
+        return false;
     },
     hasAnyMajorDiagonalConflicts: function() { 
       for (var i = 0; i < this.get('n'); i++) {
@@ -184,15 +185,15 @@
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return this.hasMinorDiagonalConflictAt();
-    },
-    // for (var i = 0; i < this.get('n'); i++) {
-    //   if (this.hasMinorDiagonalConflictAt()) { 
-    //     return true;
-    //   // }
-    // }
-    // return false; // fixme
+    //   return this.hasMinorDiagonalConflictAt();
     // },
+      for (var i = 0; i < this.get('n'); i++) {
+        if (this.hasMinorDiagonalConflictAt()) { 
+          return true;
+        }
+      }
+    return false; // fixme
+    },
 
     /*--------------------  End of Helper Functions  ---------------------*/
 
